@@ -20,7 +20,10 @@ node index.js
 ![Screenshot of svg](https://github.com/MarkRBishop/quick-logo-gen/blob/main/assets/ss-of-svg.png?raw=true)
 
 # Links
+Video of application in use:
+https://drive.google.com/file/d/14SakwhHe6bjVVlmO8mReL96fEW2m6c4V/view
 
+Repository to pull files from:
 https://github.com/MarkRBishop/quick-logo-gen
 
 # Description

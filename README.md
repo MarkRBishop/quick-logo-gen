@@ -17,7 +17,7 @@ node index.js
 
 3. Follow the command line questions.
 
-![Screenshot of svg]()
+![Screenshot of svg](https://github.com/MarkRBishop/quick-logo-gen/blob/main/assets/ss-of-svg.png?raw=true)
 
 # Links
 

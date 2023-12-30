@@ -3,9 +3,32 @@ const fs = require('fs')
 const { Circle, Square, Triangle} = require('./lib/shapes');
 
 const generateSvg = (shape) => {
+    let textX
+    let textY
+    let fontSize
+
+    switch (shape.constructor.name) {
+        case 'Circle':
+          textX = 150;
+          textY = 120;
+          fontSize = 60;
+          break;
+        case 'Square':
+          textX = 100;
+          textY = 110;
+          fontSize = 40;
+          break;
+        case 'Triangle':
+          textX = 150;
+          textY = 125;
+          fontSize = 30;
+          break;
+        default:
+      }
+
     return `<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
     ${shape.render()}
-    <text x="150" y="125" font-size="60" fill="${shape.textColor}" text-anchor="middle" alignment-basline="middle">${shape.text}</text>
+    <text x="${textX}" y="${textY}" font-size="${fontSize}" text-anchor="middle" fill="${shape.textColor}">${shape.text}</text>
 </svg>`;
 };
 

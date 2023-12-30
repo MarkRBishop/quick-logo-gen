@@ -36,7 +36,7 @@ const generateLogo = async () => {
         const shape = new getShape(userInput.shape)
         
         shape.setText(userInput.text)
-        shape.setTextColor(userInput.setTextColor)
+        shape.setTextColor(userInput.textColor)
         shape.setShapeColor(userInput.shapeColor)
         
         const svgString = shape.render()

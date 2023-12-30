@@ -2,6 +2,13 @@ const inquirer = require('inquirer')
 const fs = require('fs')
 const { Circle, Square, Triangle} = require('./lib/shapes');
 
+const generateSvg = (shape) => {
+    return `<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+    ${shape.render()}
+    <text x="150" y="125" font-size="60" fill="${shape.textColor}" text-anchor="middle" alignment-basline="middle">${shape.text}</text>
+</svg>`;
+};
+
 const generateLogo = async () => {
     try {
         const userInput = await inquirer.prompt([
@@ -31,13 +38,13 @@ const generateLogo = async () => {
 
         ]);
 
-        const shape = new getShape(userInput.shape)
+        const shape = getShape(userInput.shape)
         
         shape.setText(userInput.text)
         shape.setTextColor(userInput.textColor)
         shape.setShapeColor(userInput.shapeColor)
         
-        const svgString = shape.render()
+        const svgString = generateSvg(shape)
 
         fs.writeFileSync('logo.svg', svgString)
 

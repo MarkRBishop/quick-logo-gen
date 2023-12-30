@@ -1,8 +1,6 @@
 const inquirer = require('inquirer')
 const fs = require('fs')
-const Triangle = require ('./lib/triangle')
-const Square = require ('./lib/square')
-const Circle = require ('./lib/circle')
+const { Circle, Square, Triangle} = require('./lib/shapes');
 
 const generateLogo = async () => {
     try {

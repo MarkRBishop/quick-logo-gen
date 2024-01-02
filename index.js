@@ -1,12 +1,15 @@
+//Required modules
 const inquirer = require('inquirer')
 const fs = require('fs')
 const { Circle, Square, Triangle} = require('./lib/shapes');
 
+//function to generate SVG content based on the shape thats selected
 const generateSvg = (shape) => {
     let textX
     let textY
     let fontSize
 
+    //Adjusts the text location and size based on the shape to make it look better
     switch (shape.constructor.name) {
         case 'Circle':
           textX = 150;
@@ -24,16 +27,21 @@ const generateSvg = (shape) => {
           fontSize = 30;
           break;
         default:
+          break;
       }
 
+    //construct SVG content with the selected options
     return `<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
     ${shape.render()}
     <text x="${textX}" y="${textY}" font-size="${fontSize}" text-anchor="middle" fill="${shape.textColor}">${shape.text}</text>
 </svg>`;
 };
 
+//function to generate the logo based on user input
 const generateLogo = async () => {
     try {
+
+        //User input prompts
         const userInput = await inquirer.prompt([
             {
                 type: 'input',
@@ -61,12 +69,15 @@ const generateLogo = async () => {
 
         ]);
 
+        //Get the shape based on the user input
         const shape = getShape(userInput.shape)
         
+        //sets the shape properties
         shape.setText(userInput.text)
         shape.setTextColor(userInput.textColor)
         shape.setShapeColor(userInput.shapeColor)
         
+        //Generate SVG based on the shape and write it to 'logo.svg'
         const svgString = generateSvg(shape)
 
         fs.writeFileSync('logo.svg', svgString)
@@ -78,12 +89,14 @@ const generateLogo = async () => {
     }
 };
 
+//Validates the color input
 const validateColor = (input) => {
     const colorRegex = /^(#[0-9A-Fa-f]{6}|[a-zA-Z]+)$/
 
     return colorRegex.test(input) ? true: 'Please enter a valid color name or hex code.'
 }
 
+//Gets the corresponding shape based on the user input
 const getShape = (shapeName) => {
     switch (shapeName) {
         case 'Triangle':
@@ -98,4 +111,5 @@ const getShape = (shapeName) => {
 
 }
 
+//main function call to generate the logo
 generateLogo()
